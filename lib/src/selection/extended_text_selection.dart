@@ -218,6 +218,12 @@ class ExtendedTextSelectionState extends State<ExtendedTextSelection>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    hideToolbar(true);
+  }
+
+  @override
   void didUpdateWidget(ExtendedTextSelection oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.textSelectionControls != widget.textSelectionControls) {
@@ -263,6 +269,8 @@ class ExtendedTextSelectionState extends State<ExtendedTextSelection>
 
   @override
   void dispose() {
+    hideToolbar(true);
+
     _pointerHandlerState?.selectionStates.remove(this);
     _clipboardStatus?.removeListener(_onChangedClipboardStatus);
     _clipboardStatus?.dispose();
